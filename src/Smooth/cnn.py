@@ -35,7 +35,7 @@ class CNN(nn.Module):
         self.verbose = verbose
         
     def _get_conv_smoother(self):
-        layers = [ nn.Conv1d(self.num_classes,self.num_classes,self.num_features,padding=(self.num_features-1)//2,padding_mode="reflection") ]
+        layers = [ nn.Conv1d(self.num_classes,self.num_classes,self.num_features,padding=(self.num_features-1)//2,padding_mode="reflect") ]
         return nn.Sequential(*layers)
         
     def forward_tensors(self,base_out):
