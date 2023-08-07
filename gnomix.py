@@ -6,14 +6,14 @@ import pickle
 import sys
 import yaml
 
-from src.utils import run_shell_cmd, join_paths, read_vcf, vcf_to_npy, npy_to_vcf, update_vcf 
-from src.utils import read_genetic_map, save_dict, load_dict, read_headers
-from src.preprocess import load_np_data, data_process
-from src.postprocess import get_meta_data, write_msp, write_fb, msp_to_lai, msp_to_bed
-from src.visualization import plot_cm, plot_chm
-from src.laidataset import LAIDataset
+from Gnomix.utils import run_shell_cmd, join_paths, read_vcf, vcf_to_npy, npy_to_vcf, update_vcf 
+from Gnomix.utils import read_genetic_map, save_dict, load_dict, read_headers
+from Gnomix.preprocess import load_np_data, data_process
+from Gnomix.postprocess import get_meta_data, write_msp, write_fb, msp_to_lai, msp_to_bed
+from Gnomix.visualization import plot_cm, plot_chm
+from Gnomix.laidataset import LAIDataset
 
-from src.model import Gnomix
+from Gnomix.model import Gnomix
 
 CLAIMER = 'When using this software, please cite: \n' + \
           'Helgi Hilmarsson, Arvind S Kumar, Richa Rastogi, Carlos D Bustamante, \n' + \

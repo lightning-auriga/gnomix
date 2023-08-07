@@ -4,7 +4,7 @@ import os
 from collections import namedtuple
 import scipy.interpolate
 
-from src.utils import read_vcf, read_genetic_map
+from Gnomix.utils import read_vcf, read_genetic_map
 
 def get_chm_info(genetic_map,variants_pos,chm):
 

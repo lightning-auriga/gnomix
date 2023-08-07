@@ -3,8 +3,8 @@ import pickle
 import sys
 from time import time
 
-from src.Gnofix.phasing import *
-from src.Gnofix.simple_switch import simple_switch
+from Gnomix.Gnofix.phasing import *
+from Gnomix.Gnofix.simple_switch import simple_switch
 
 def mask_base_prob(base_prob, d=0):
     """
