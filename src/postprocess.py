@@ -34,9 +34,9 @@ def get_meta_data(chm, model_pos, query_pos, n_wind, wind_size, gen_map_df):
     """
 
     model_chm_len = len(model_pos)
-    
+
     # chm
-    chm_array = [chm]*n_wind
+    chm_array = [float(x.strip("chr") for x in str(chm))]*n_wind
 
     # start and end pyshical positions
     spos_idx = np.arange(0, model_chm_len, wind_size)[:-1]
@@ -183,7 +183,7 @@ def get_bed_data(msp_df, sample, pop_order=None):
     egpos.append(msp_df["egpos"].iloc[-1])
     
     bed_data = {
-        "chm": np.array(chm).astype(int),
+        "chm": np.array(chm).astype(str),
         "spos": np.array(spos).astype(int),
         "epos": np.array(epos).astype(int),
         "ancestry": ancestry_labels,
