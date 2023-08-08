@@ -1,4 +1,4 @@
-from collections import Counter
+from collections import Counter, defaultdict
 import numpy as np
 import pandas as pd
 from scipy.interpolate import interp1d
@@ -36,7 +36,7 @@ def get_meta_data(chm, model_pos, query_pos, n_wind, wind_size, gen_map_df):
     model_chm_len = len(model_pos)
 
     # chm
-    chm_array = [int(str(chm).strip("chr"))]*n_wind
+    chm_array = [int(str(chm).strip("chr"))]*round(n_wind)
 
     # start and end pyshical positions
     spos_idx = np.arange(0, model_chm_len, wind_size)[:-1]
@@ -148,7 +148,7 @@ def msp_to_lai(msp_file, positions, lai_file=None):
         first_line = f.readline()
         second_line = f.readline()
         
-    header = second_line[:-1].split("\t")
+    header = second_line.rstrip().split("\t")
     samples = header[6:]
     df = pd.DataFrame(data_snp, columns=samples, index=positions)
 
@@ -162,8 +162,10 @@ def msp_to_lai(msp_file, positions, lai_file=None):
 def get_bed_data(msp_df, sample, pop_order=None):
     
     ancestry_label = lambda pop_numeric: pop_numeric if pop_order is None else pop_order[pop_numeric]
-    
-    chm, spos, sgpos = [ [val] for val in msp_df[["#chm", "spos", "sgpos"]].iloc[0] ]
+
+    chm = msp_df[["#chm"]].iloc[0].to_list()
+    spos = msp_df[["spos"]].iloc[0].to_list()
+    sgpos = msp_df[["sgpos"]].iloc[0].to_list()
     epos, egpos = [], []
     anc = msp_df[sample].iloc[0]
     ancestry_labels = [ ancestry_label(anc) ]
@@ -198,8 +200,9 @@ def msp_to_bed(msp_file, root, pop_order=None):
         _ = f.readline()
         second_line = f.readline()
 
-    header = second_line.split("\t")
-    msp_df = pd.read_csv(msp_file, sep="\t", comment="#", names=header)
+    header = second_line.rstrip().split("\t")
+    msp_df = pd.read_csv(msp_file, sep="\t", comment="#", names=header,
+                         dtype=defaultdict(lambda: "int", sgpos='float', egpos='float'))
     
     samples = header[6:]
     
