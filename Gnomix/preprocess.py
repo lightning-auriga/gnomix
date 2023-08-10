@@ -20,7 +20,7 @@ def load_np_data(files, verb=False):
     return data
 
 def vcf2npy(vcf_file):
-    vcf_data = sgkit.read_vcf(vcf_file)
+    vcf_data = sgkit.io.vcf.read_vcf(vcf_file)
     chm_len, nout, _ = vcf_data["calldata/GT"].shape
     mat_vcf_2d = vcf_data["calldata/GT"].reshape(chm_len,nout*2).T
     return mat_vcf_2d.astype('int16')
