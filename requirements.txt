@@ -2,7 +2,7 @@ matplotlib==3.3.4
 numpy==1.20.3
 pandas==1.3.5
 PyYAML==5.1.2
-scikit-allel==1.3.1
+sgkit
 scikit-learn==1.0.1
 scipy==1.5.3
 seaborn==0.11.2

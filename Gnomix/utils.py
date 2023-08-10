@@ -1,4 +1,4 @@
-import allel
+import sgkit
 import gzip
 import numpy as np
 import os
@@ -63,9 +63,9 @@ def read_vcf(vcf_file, chm=None, fields=None, verbose=False):
 
     if vcf_file[-3:]==".gz":
         with gzip.open(vcf_file, 'rb') as vcf:
-            data = allel.read_vcf(vcf,  region=chm, fields=fields)
+            data = sgkit.read_vcf(vcf,  region=chm, fields=fields)
     else: 
-        data = allel.read_vcf(vcf_file, region=chm, fields=fields)
+        data = sgkit.read_vcf(vcf_file, region=chm, fields=fields)
 
     if data is None:
         if chm is None:
@@ -247,7 +247,7 @@ def get_name(name_len=8):
 def npy_to_vcf(reference, npy, results_file, verbose=False, headers=""):
     """
     - reference: str path to reference file which provides metadata for the results
-                 or alternatively, a allel.read_vcf output
+                 or alternatively, a sgkit.read_vcf output
     - npy: npy matrix - shape: (num_samples, num_snps)
            make sure npy file has same snp positions
     - results_file: str output vcf path
@@ -269,7 +269,7 @@ def npy_to_vcf(reference, npy, results_file, verbose=False, headers=""):
 
     # read in the input vcf data
     if type(reference) == str:
-        data = allel.read_vcf(reference)
+        data = sgkit.read_vcf(reference)
     else:
         data = reference.copy()
     
