@@ -55,11 +55,11 @@ def join_paths(p1,p2="",verb=True):
 def read_vcf(vcf_file, chm=None, fields=None, verbose=False):
     """
     Wrapper function for reading vcf files into a dictionary
-    fields="*" extracts more information, take out if ruled unecessary
+    fields="INFO/*" or "FORMAT/*" extracts more information, take out if ruled unecessary
     """
     if fields is None:
         # fields = ['variants/CHROM', 'variants/POS', 'calldata/GT', 'variants/REF', 'samples']
-        fields = "*"
+        fields = ["FORMAT/*"]
 
     data = sgkit.io.vcf.read_vcf(vcf_file, regions=[[chm]], fields=fields)
 
