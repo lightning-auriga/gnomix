@@ -1,4 +1,4 @@
-import sgkit
+import sgkit.io.vcf
 import gzip
 import numpy as np
 import os
