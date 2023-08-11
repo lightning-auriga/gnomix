@@ -63,9 +63,9 @@ def read_vcf(vcf_file, chm=None, fields=None, verbose=False):
 
     if vcf_file[-3:]==".gz":
         with gzip.open(vcf_file, 'rb') as vcf:
-            data = sgkit.io.vcf.read_vcf(vcf,  region=chm, fields=fields)
+            data = sgkit.io.vcf.read_vcf(vcf,  regions=chm, fields=fields)
     else: 
-        data = sgkit.io.vcf.read_vcf(vcf_file, region=chm, fields=fields)
+        data = sgkit.io.vcf.read_vcf(vcf_file, regions=chm, fields=fields)
 
     if data is None:
         if chm is None:
