@@ -61,7 +61,7 @@ def read_vcf(vcf_file, chm=None, fields=None, verbose=False):
         # fields = ['variants/CHROM', 'variants/POS', 'calldata/GT', 'variants/REF', 'samples']
         fields = ["FORMAT/*"]
 
-    data = sgkit.io.vcf.read_vcf(vcf_file, regions=[[chm]], fields=fields)
+    data = sgkit.io.vcf.read_vcf(vcf_file, regions=[chm], fields=fields)
 
     if data is None:
         if chm is None:
