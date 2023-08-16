@@ -22,9 +22,9 @@ model:
   context_ratio: 0.5  # context for each window will be context_ratio*window_size on each side
   retrain_base: True  # retrain the base models once smoother data has been obtained
   calibrate: False    # calibrate the output probabilities
-  n_cores:            # number of CPUs to use, default is maximum
+  n_cores: 1          # number of CPUs to use, default is capped at a mere 1 thread
 
 inference:
-  bed_file_output: False # generate files for each individual that show the run length encoding of their ancestry segments
-  snp_level_inference: False # output ancestry inference for each marker of the query file
+  bed_file_output: True # generate files for each individual that show the run length encoding of their ancestry segments
+  snp_level_inference: True # output ancestry inference for each marker of the query file
   visualize_inference: False # visualize chromosome paintings, beta version
